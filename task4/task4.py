@@ -7,11 +7,14 @@ def calculate_min_steps(nums):
     """
     "Минимальное количество ходов для равных элементов массива"
     """
-    arithmetic_mean = sum(nums) // len(nums)  # среднее арифметическое ЦЕЛОЕ число
+    # сортируем по возрастанию для нахождения медианы (значение в середине упорядоченного набора данных)
+    sorted_nums = sorted(nums)
+    # получени числа, c помощью которого мы будем высчитывать количество шагов
+    mediana = sorted_nums[len(sorted_nums) // 2]
 
     steps = 0
     for num in nums:
-        steps += abs(num - arithmetic_mean)
+        steps += abs(num - mediana)
     return steps
 
 
