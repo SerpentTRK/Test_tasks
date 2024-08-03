@@ -30,8 +30,11 @@ def read_points(file_path):
         points = []
         for line in data:
             line_list = line.strip().split()
-            x, y = int(line_list[0]), int(line_list[1])
-            points.append((x, y))
+            try:
+                x, y = int(line_list[0]), int(line_list[1])
+                points.append((x, y))
+            except IndexError:
+                pass
     return points
 
 def calculate_distance_between_center_and_point(x1, y1, x2, y2):
