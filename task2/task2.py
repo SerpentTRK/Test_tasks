@@ -3,17 +3,32 @@ import os
 import math
 
 
+# def read_circle_data(file_path):
+#     with open(file_path, 'r') as file:
+#         data = file.readline().strip().split()
+#         center_x, center_y = int(data[0]), int(data[1])
+#         radius = int(file.readline().strip())
+#     return center_x, center_y, radius
+
+
 def read_circle_data(file_path):
     with open(file_path, 'r') as file:
-        data = file.readline().strip().split()
-        center_x, center_y = int(data[0]), int(data[1])
-        radius = int(file.readline().strip())
+        data = file.read().strip().split()
+        if len(data) == 3:
+            center_x, center_y = int(data[0]), int(data[1].replace('\\n', ''))
+            radius = int(data[2])
+        else:
+            center_x, center_y = int(data[0]), int(data[1].split('\\')[0])
+            radius = int(data[1].split('n')[-1])
     return center_x, center_y, radius
+
 
 def read_points(file_path):
     with open(file_path, 'r') as file:
+        data = file.read().strip().split('\\n')
+
         points = []
-        for line in file:
+        for line in data:
             line_list = line.strip().split()
             x, y = int(line_list[0]), int(line_list[1])
             points.append((x, y))
@@ -34,7 +49,6 @@ def point_position(center_x, center_y, radius, x, y):
         return 1
     else:
         return 2
-
 
 
 """
