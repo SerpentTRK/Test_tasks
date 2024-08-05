@@ -38,10 +38,10 @@ def circular_generator(massiv):
 """
 # Получаем числа N и M из аргументов командной строки: python task1\task1.py 5 4
 if len(sys.argv) == 3:  # Если переданы аргументы командной строки
-    path = make_circular_path(int(sys.argv[1]), int(sys.argv[2]))
+    path = make_circular_path(abs(int(sys.argv[1])), abs(int(sys.argv[2])))
 else:  # Если аргументы не переданы, запрашиваем их у пользователя
     data = input("Введите через пробел количество элементов и интервал длинны кругового массива: ").split()
-    n, m = int(data[0]), int(data[1])
+    n, m = abs(int(data[0])), abs(int(data[1]))
     path = make_circular_path(n, m)
 
 print("".join(path))
